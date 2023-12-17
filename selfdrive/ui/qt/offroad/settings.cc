@@ -23,8 +23,9 @@
 #include "selfdrive/ui/qt/util.h"
 #include "selfdrive/ui/qt/qt_window.h"
 
-#include "selfdrive/frogpilot/ui/frogpilot_settings.h"
+#include "selfdrive/frogpilot/ui/control_settings.h"
 #include "selfdrive/frogpilot/ui/vehicle_settings.h"
+#include "selfdrive/frogpilot/ui/visual_settings.h"
 #include "selfdrive/frogpilot/navigation/ui/navigation_settings.h"
 
 TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
@@ -411,7 +412,13 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   close_btn->setFixedSize(300, 125);
   sidebar_layout->addSpacing(10);
   sidebar_layout->addWidget(close_btn, 0, Qt::AlignRight);
-  QObject::connect(close_btn, &QPushButton::clicked, this, &SettingsWindow::closeSettings);
+  QObject::connect(close_btn, &QPushButton::clicked, [this]() {
+    if (paramsMemory.getInt("FrogPilotTogglesOpen") == 1) {
+      paramsMemory.putInt("FrogPilotTogglesOpen", 2);
+    } else {
+      this->closeSettings();
+    }
+  });
 
   // setup panels
   DevicePanel *device = new DevicePanel(this);
