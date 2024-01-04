@@ -276,7 +276,6 @@ class LongitudinalPlanner:
     frogpilotLongitudinalPlan.stoppedEquivalenceFactor = self.mpc.stopped_equivalence_factor
     frogpilotLongitudinalPlan.desiredFollowDistance = self.mpc.safe_obstacle_distance - self.mpc.stopped_equivalence_factor
     frogpilotLongitudinalPlan.safeObstacleDistanceStock = self.mpc.safe_obstacle_distance_stock
-    frogpilotLongitudinalPlan.stoppedEquivalenceFactorStock = self.mpc.stopped_equivalence_factor_stock
 
     pm.send('frogpilotLongitudinalPlan', frogpilot_plan_send)
 

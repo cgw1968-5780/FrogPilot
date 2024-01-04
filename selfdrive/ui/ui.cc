@@ -254,7 +254,6 @@ static void update_state(UIState *s) {
       scene.obstacle_distance = frogpilotLongitudinalPlan.getSafeObstacleDistance();
       scene.obstacle_distance_stock = frogpilotLongitudinalPlan.getSafeObstacleDistanceStock();
       scene.stopped_equivalence = frogpilotLongitudinalPlan.getStoppedEquivalenceFactor();
-      scene.stopped_equivalence_stock = frogpilotLongitudinalPlan.getStoppedEquivalenceFactorStock();
     }
     if (scene.speed_limit_controller) {
       scene.speed_limit = frogpilotLongitudinalPlan.getSlcSpeedLimit();
