@@ -109,7 +109,7 @@ class ConditionalExperimentalMode:
       return True
 
     # Slower lead check
-    if self.slower_lead and self.lead_detected and self.slow_lead(lead_distance, v_ego):
+    if self.slower_lead and self.slow_lead(lead_distance, v_ego):
       self.status_value = 9
       return True
 
@@ -125,7 +125,7 @@ class ConditionalExperimentalMode:
       return True
 
     # Stop sign and light check
-    if (self.stop_lights or green_light_alert) and self.stop_sign_and_light(modelData, v_ego) and not curve_detected:
+    if (self.stop_lights or green_light_alert) and (self.stop_lights_lead or not self.lead_detected) and self.stop_sign_and_light(modelData, v_ego) and not curve_detected:
       self.status_value = 12
       return True
 
