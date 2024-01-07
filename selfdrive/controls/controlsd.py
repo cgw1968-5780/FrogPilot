@@ -749,7 +749,7 @@ class Controls:
             self.params_memory.put_int("CurrentRandomEvent", 1)
             self.random_event_triggered = True
           else:
-            lac_log.active and self.events.add(FrogPilotEventName.frogSteerSaturated if self.frog_sounds else EventName.steerSaturated)
+            lac_log.active and self.events.add(FrogPilotEventName.frogSteerSaturated if self.goat_scream else EventName.steerSaturated)
       elif lac_log.saturated:
         dpath_points = lat_plan.dPathPoints
         if len(dpath_points):
@@ -1018,6 +1018,7 @@ class Controls:
     self.custom_theme = self.params.get_bool("CustomTheme")
     self.custom_sounds = self.params.get_int("CustomSounds") if self.custom_theme else 0
     self.frog_sounds = self.custom_sounds == 1
+    self.goat_scream = self.params.get_bool("GoatScream") and self.frog_sounds
 
     self.green_light_alert = self.params.get_bool("GreenLightAlert")
     self.pause_lateral_on_signal = self.params.get_bool("PauseLateralOnSignal")
