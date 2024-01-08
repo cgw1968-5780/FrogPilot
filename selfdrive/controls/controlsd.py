@@ -688,7 +688,7 @@ class Controls:
 
     if not self.joystick_mode:
       # accel PID loop
-      pid_accel_limits = self.CI.get_pid_accel_limits(self.CP, CS.vEgo, self.v_cruise_helper.v_cruise_kph * CV.KPH_TO_MS)
+      pid_accel_limits = self.CI.get_pid_accel_limits(self.CP, CS.vEgo, self.v_cruise_helper.v_cruise_kph * CV.KPH_TO_MS, self.sport_plus)
       t_since_plan = (self.sm.frame - self.sm.rcv_frame['longitudinalPlan']) * DT_CTRL
       actuators.accel = self.LoC.update(CC.longActive, CS, long_plan, pid_accel_limits, t_since_plan)
 
@@ -843,7 +843,7 @@ class Controls:
     if not self.CP.passive and self.initialized:
       # send car controls over can
       now_nanos = self.can_log_mono_time if REPLAY else int(time.monotonic() * 1e9)
-      self.last_actuators, can_sends = self.CI.apply(CC, now_nanos)
+      self.last_actuators, can_sends = self.CI.apply(CC, now_nanos, self.sport_plus)
       self.pm.send('sendcan', can_list_to_can_capnp(can_sends, msgtype='sendcan', valid=CS.canValid))
       CC.actuatorsOutput = self.last_actuators
       if self.CP.steerControlType == car.CarParams.SteerControlType.angle:
@@ -1022,6 +1022,7 @@ class Controls:
     self.pause_lateral_on_signal = self.params.get_bool("PauseLateralOnSignal")
     self.random_events = self.params.get_bool("RandomEvents")
     self.reverse_cruise_increase = self.params.get_bool("ReverseCruise")
+    self.sport_plus = self.params.get_int("AccelerationProfile") == 3
 
 def main():
   controls = Controls()
