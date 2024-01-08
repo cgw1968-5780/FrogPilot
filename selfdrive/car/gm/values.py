@@ -6,6 +6,7 @@ from typing import Dict, List, Union
 
 from cereal import car
 from openpilot.common.numpy_fast import interp
+from openpilot.common.params import Params
 from openpilot.selfdrive.car import dbc_dict
 from openpilot.selfdrive.car.docs_definitions import CarFootnote, CarHarness, CarInfo, CarParts, Column
 Ecu = car.CarParams.Ecu
@@ -50,7 +51,7 @@ class CarControllerParams:
       # Camera transitions to MAX_ACC_REGEN from ZERO_GAS and uses friction brakes instantly
       max_regen_acceleration = 0.
 
-      if CP.carFingerprint in SLOW_ACC:
+      if CP.carFingerprint in SLOW_ACC and Params().get_bool("GasRegenCmd"):
         self.MAX_GAS = 8650
 
     elif CP.carFingerprint in SDGM_CAR:
