@@ -45,8 +45,8 @@ def get_max_accel_sport_tune(v_ego):
 
 class FrogPilotPlanner:
   def __init__(self, params):
-    self.DH = DesireHelper()
     self.cem = ConditionalExperimentalMode()
+    self.DH = DesireHelper()
     self.mtsc = MapTurnSpeedController()
 
     self.override_slc = False
@@ -201,7 +201,7 @@ class FrogPilotPlanner:
 
     self.conditional_experimental_mode = params.get_bool("ConditionalExperimental")
     if self.conditional_experimental_mode:
-      self.cem.update_frogpilot_params(self.is_metric)
+      self.cem.update_frogpilot_params(self.is_metric, params)
       if not params.get_bool("ExperimentalMode"):
         params.put_bool("ExperimentalMode", True)
 
