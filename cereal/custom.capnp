@@ -25,6 +25,9 @@ enum FrogPilotEvents @0xf35cc4560bbf6ec2 {
   torqueNNLoad @3;
   turningLeft @4;
   turningRight @5;
+
+  # Random events events
+  firefoxSteerSaturated @6;
 }
 
 struct FrogPilotLateralPlan @0xda96579883444c35 {
@@ -51,8 +54,7 @@ struct FrogPilotNavigation @0xa5cd762cd951a455 {
   navigationConditionMet @0 :Bool;
 }
 
-enum RandomEvents @0xf98d843bfd7004a3 {
-  firefoxSteerSaturated @0;
+struct CustomReserved6 @0xf98d843bfd7004a3 {
 }
 
 struct CustomReserved7 @0xb86e6369214c01c8 {

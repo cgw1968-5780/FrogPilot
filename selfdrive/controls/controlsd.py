@@ -51,7 +51,6 @@ ButtonType = car.CarState.ButtonEvent.Type
 SafetyModel = car.CarParams.SafetyModel
 
 FrogPilotEventName = custom.FrogPilotEvents
-RandomEventName = custom.RandomEvents
 
 IGNORED_SAFETY_MODES = (SafetyModel.silent, SafetyModel.noOutput)
 CSID_MAP = {"1": EventName.roadCameraError, "2": EventName.wideRoadCameraError, "0": EventName.driverCameraError}
@@ -743,7 +742,7 @@ class Controls:
         max_torque = abs(self.last_actuators.steer) > 0.99
         if undershooting and turning and good_speed and max_torque and not self.random_event_triggered:
           if self.sm.frame % 10000 == 0:
-            lac_log.active and self.events.add(RandomEventName.firefoxSteerSaturated)
+            lac_log.active and self.events.add(FrogPilotEventName.firefoxSteerSaturated)
             self.params_memory.put_int("CurrentRandomEvent", 1)
             self.random_event_triggered = True
           else:

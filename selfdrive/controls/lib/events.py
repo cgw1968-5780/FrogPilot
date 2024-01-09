@@ -19,7 +19,6 @@ AudibleAlert = car.CarControl.HUDControl.AudibleAlert
 EventName = car.CarEvent.EventName
 
 FrogPilotEventName = custom.FrogPilotEvents
-RandomEventName = custom.RandomEvents
 
 
 # Alert priorities
@@ -49,7 +48,6 @@ class ET:
 # get event name from enum
 EVENT_NAME = {v: k for k, v in EventName.schema.enumerants.items()}
 EVENT_NAME.update({v: k for k, v in FrogPilotEventName.schema.enumerants.items()})
-EVENT_NAME.update({v: k for k, v in RandomEventName.schema.enumerants.items()})
 
 
 class Events:
@@ -1032,7 +1030,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   # Random Events
-  RandomEventName.firefoxSteerSaturated: {
+  FrogPilotEventName.firefoxSteerSaturated: {
     ET.WARNING: Alert(
       "Turn Exceeds Steering Limit",
       "IE Has Stopped Responding...",
