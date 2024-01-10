@@ -110,8 +110,8 @@ def fill_model_msg(msg: capnp._DynamicStructBuilder, net_output_data: Dict[str, 
       lane_diff = net_output_data['lane_lines'][0, near_lane] - net_output_data['lane_lines'][0, far_lane]
       road_edge_diff = net_output_data['lane_lines'][0, near_lane] - net_output_data['road_edges'][0, road_edge]
 
-      y_min += np.where(lane_diff[:,0] < road_edge_diff[:,0], net_output_data['road_edges'][0, road_edge, :,0], net_output_data['lane_lines'][0, far_lane, :,0])
-      z_min += np.where(lane_diff[:,1] < road_edge_diff[:,1], net_output_data['road_edges'][0, road_edge, :,1], net_output_data['lane_lines'][0, far_lane, :,1])
+      y_min += np.where(lane_diff[:,0] < road_edge_diff[:,0], net_output_data['lane_lines'][0, far_lane, :,0], net_output_data['road_edges'][0, road_edge, :,0])
+      z_min += np.where(lane_diff[:,1] < road_edge_diff[:,1], net_output_data['lane_lines'][0, far_lane, :,1], net_output_data['road_edges'][0, road_edge, :,1])
 
       y_min /= 2
       z_min /= 2
