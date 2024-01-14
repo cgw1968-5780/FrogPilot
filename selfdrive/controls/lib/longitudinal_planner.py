@@ -28,7 +28,7 @@ A_CRUISE_MAX_BP = [0., 10.0, 25., 40.]
 
 # Acceleration profiles - Credit goes to the DragonPilot team!
                  # MPH = [0.,  35,   35,  40,    40,  45,    45,  67,    67,   67, 123]
-A_CRUISE_MIN_BP_CUSTOM = [0., 4.0,  11.,  18.,  28.,  33., 55.]
+A_CRUISE_MIN_BP_CUSTOM = [0., 1.0,  11.,  18.,  28.,  33., 55.]
                  # MPH = [0., 6.71, 13.4, 17.9, 24.6, 33.6, 44.7, 55.9, 67.1, 123]
 A_CRUISE_MAX_BP_CUSTOM = [0.,    3,   6.,   8.,  11.,  15.,  20.,  25.,  30., 55.]
 
